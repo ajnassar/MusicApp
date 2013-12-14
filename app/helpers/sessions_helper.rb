@@ -16,4 +16,11 @@ module SessionsHelper
   def logged_in?
     current_user != nil
   end
+
+  def require_loggin!
+    unless logged_in?
+      flash[:errors] = ["You must log in first before viewing the page"]
+      redirect_to new_session_url
+    end
+  end
 end

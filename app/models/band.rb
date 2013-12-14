@@ -14,4 +14,5 @@ class Band < ActiveRecord::Base
     :source => :tracks
   )
 
+
 end
