@@ -1,10 +1,9 @@
 class SessionsController < ApplicationController
   def create
     @user = User.find_by_user_name(params[:user][:user_name])
-    if !@user.nil?
+    if @user
       login_in_user(@user)
-      @user.save
-      redirect_to users_url
+      redirect_to bands_url
     else
       flash[:errors] = ["Incorrect username or password"]
       render :new
@@ -17,5 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
+    redirect_to new_session_url
   end
 end

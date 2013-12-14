@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
     reset_session_token
   end
 
-  validates :user_name, :email, :session_token, :password_digest, :presence => true
+  validates :user_name, :email, :session_token, :password_digest,
+            :presence => true
   validates :user_name, :email, :uniqueness => true
-  validates :password, :length => {:minimum => 7, :maximum => 15}
+  validates :password, :length => {:minimum => 7, :maximum => 15},
+            :on => :create
 
   def generate_session_token
-    SecureRandom.base64
+    SecureRandom.urlsafe_base64
   end
 
   def password
@@ -35,5 +37,10 @@ class User < ActiveRecord::Base
   # private
   def reset_session_token
     self.session_token = generate_session_token
+  end
+
+  def reset_session_token!
+    reset_session_token
+    self.save!
   end
 end
