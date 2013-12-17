@@ -24,7 +24,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-
+    Album.find(params[:id]).destroy
+    @albums = Album.all
+    render :index
   end
 
   def edit

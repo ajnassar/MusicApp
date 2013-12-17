@@ -1,3 +1,8 @@
+<%= button_to("Add Album", new_band_album_url, :method => :get)%>
+
 <% @albums.each do |album| %>
-<%= link_to(album.name, album_url(album)) %> <br>
+<%= link_to(album.name, album_url(album)) %>
+<%= button_to("remove album", album_url(album), :method => :delete)%>
+<br>
 <% end %>
+
