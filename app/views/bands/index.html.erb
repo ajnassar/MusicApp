@@ -2,3 +2,5 @@
 <% @bands.each do |band| %>
 <%= band.name %> <br>
 <% end %>
+
+<%= button_to("Add Band", new_band_url, :method => :get)%>

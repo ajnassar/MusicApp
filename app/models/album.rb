@@ -1,8 +1,8 @@
 class Album < ActiveRecord::Base
-
+  attr_accessible :name, :band_id
 
   belongs_to(
-    :band
+    :band,
     :primary_key => :id,
     :foreign_key => :band_id,
     :class_name => "Band"
@@ -12,7 +12,7 @@ class Album < ActiveRecord::Base
     :tracks,
     :primary_key => :id,
     :foreign_key => :album_id,
-    :class_name => "Track"
+    :class_name => "Track",
     :dependent => :destroy
   )
 end

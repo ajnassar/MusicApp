@@ -1,0 +1,13 @@
+<h1>Edit Band</h1>
+
+<% if flash[:errors] %>
+<% flash[:errors].each do |error| %>
+ <%= error %> <br>
+<% end end%>
+
+<form action = "<%= band_url %>" method = "POST">
+  <input type = "hidden" name = "_method" value = "PUT">
+  <label for = "band_name">Band Name</label>
+  <input id = "band_name" name = "band[name]" value = "<%= @band.name %>"> <br>
+  <input type = "submit" value = "Edit Band Name">
+<form>

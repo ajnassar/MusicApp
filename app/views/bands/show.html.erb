@@ -1,0 +1,13 @@
+<h2><%= @band.name %></h2>
+
+<% if flash[:errors] %>
+<% flash[:errors].each do |error| %>
+ <%= error %> <br>
+<% end end%>
+<h3>Albums</h3>
+<% @band.albums.each do |album| %>
+<%= link_to(album.name, album_url(album))%> <br>
+<% end %>
+
+<%= button_to("Add Album", new_band_album_url(@band.id), :method => :get)%>
+<%= button_to("Edit Band", edit_band_url, :method => :get)%>
