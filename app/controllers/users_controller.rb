@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
-    if @user
+    if @user.save
       login_in_user(@user)
-      redirect_to bands_url
     else
       flash[:errors] = @user.errors.full_messages
-      redirect_to bands_url
+      render :new
     end
   end
 
   def new
+    @user = User.new
     render :new
   end
 

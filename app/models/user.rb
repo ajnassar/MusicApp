@@ -30,11 +30,10 @@ class User < ActiveRecord::Base
 
   def self.find_by_credentials(email, secret)
     user = User.find_by_email(email)
+    return nil if user.nil?
     return user if user.is_password?(secret)
-    nil
   end
 
-  # private
   def reset_session_token
     self.session_token = generate_session_token
   end

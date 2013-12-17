@@ -12,10 +12,6 @@
       <%= button_to("Logout", session_url , :method => :delete) %>
     </span>
   <% end %>
-  <% if flash[:errors] %>
-  <% flash[:errors].each do |error| %>
-  <span style = "color: red; font-size: 1em" > <%= error %> </span> <br>
-  <% end end%>
 <%= yield %>
 
 </body>

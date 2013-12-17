@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
   def create
-    password = params[:user][]
-    #Work on find_by_credentials, this method is in User model
-    @user = User.find_by_credentials(params[:user][:email], params[:user])
+    @user = User.find_by_credentials(
+      params[:user][:email],
+      params[:user][:password]
+    )
     if @user
       login_in_user(@user)
-      redirect_to bands_url
     else
-      flash.now[:errors] = ["Incorrect username or password"]
+      flash.now[:errors] ||= []
+      flash.now[:errors] << "Incorrect Email or Password"
       render :new
     end
   end
@@ -18,6 +19,5 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to new_session_url
   end
 end
