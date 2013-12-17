@@ -25,10 +25,16 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-
+    @album = Album.find(params[:id])
   end
 
   def update
-
+    @album = Album.find(params[:id])
+    if @album.update_attributes(params[:album])
+      redirect_to album_url(@album)
+    else
+      flash.now[:errors] = @album.errors.full_messages
+      render :edit
+    end
   end
 end

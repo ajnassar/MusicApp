@@ -1,0 +1,12 @@
+<h1>Edit Album</h1>
+
+<% if flash[:errors] %>
+<% flash[:errors].each do |error| %>
+ <%= error %> <br>
+<% end end%>
+<form action = "<%= album_url(@album) %>" method = "POST">
+  <input type = "hidden" name = "_method" value = "PUT">
+  <label for = "album_name">Album Name</label>
+  <input id = "album_name" name = "album[name]" value = "<%= @album.name %>"> <br>
+  <input type = "submit" value = "Edit Album Name">
+<form>
